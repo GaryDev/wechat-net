@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChat.Framwork.Core", "WeChat.Framwork.Core\WeChat.Framwork.Core.csproj", "{9BFBE463-2246-48E3-8B51-37EE1400BE57}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WeChat.Framwork.Web", "WeChat.Framwork.Web", "{C09BFD4A-7590-488E-8960-5A6C6DDF7C21}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{9BFBE463-2246-48E3-8B51-37EE1400BE57}|WeChat.Framwork.Core.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/wechatdemo.apphb.com"
+		Debug.AspNetCompiler.PhysicalPath = "WeChat.Framwork.Web\"
+		Debug.AspNetCompiler.TargetPath = "..\..\..\GIT\wechatdemo.apphb.com\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "true"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/wechatdemo.apphb.com"
+		Release.AspNetCompiler.PhysicalPath = "WeChat.Framwork.Web\"
+		Release.AspNetCompiler.TargetPath = "..\..\..\GIT\wechatdemo.apphb.com\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "true"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "57569"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChat.Framwork.Plugin.Demo", "WeChat.Framwork.Plugin.Demo\WeChat.Framwork.Plugin.Demo.csproj", "{65E362A8-48B4-4F59-B777-26F5C5D31275}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BFBE463-2246-48E3-8B51-37EE1400BE57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BFBE463-2246-48E3-8B51-37EE1400BE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BFBE463-2246-48E3-8B51-37EE1400BE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BFBE463-2246-48E3-8B51-37EE1400BE57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09BFD4A-7590-488E-8960-5A6C6DDF7C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09BFD4A-7590-488E-8960-5A6C6DDF7C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09BFD4A-7590-488E-8960-5A6C6DDF7C21}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09BFD4A-7590-488E-8960-5A6C6DDF7C21}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{65E362A8-48B4-4F59-B777-26F5C5D31275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E362A8-48B4-4F59-B777-26F5C5D31275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E362A8-48B4-4F59-B777-26F5C5D31275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E362A8-48B4-4F59-B777-26F5C5D31275}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
