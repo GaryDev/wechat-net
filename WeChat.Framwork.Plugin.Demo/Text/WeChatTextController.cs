@@ -20,27 +20,33 @@ namespace WeChat.Framwork.Plugin.Demo
         public override void ProcessWeChat(WeChatContext context)
         {
             WeChatTextMessageEntity request = context.Request.GetRequestModel<WeChatTextMessageEntity>();
-            string respMsg = string.Empty;
+            WeChatMessageBaseEntity response;
             if (string.IsNullOrEmpty(request.Content))
-                respMsg = "说点什么吧...";
+            {
+                response = new WeChatTextMessageEntity
+                {
+                    ToUserName = request.FromUserName,
+                    Content = "说点什么吧...",
+                    MsgType = request.MsgType
+                };
+            }
             else
             {
                 try
                 {
                     WeChatTextAnalyzer analyzer = WeChatTextFactory.GetInstance().CreateAnalyzer(request.Content.Trim());
-                    respMsg = analyzer.GetResponseMessage();
+                    response = analyzer.GetResponse(request);
                 }
                 catch (WeChatTextInvalidArgumentException ex)
                 {
-                    respMsg = ex.Message;
+                    response = new WeChatTextMessageEntity
+                    {
+                        ToUserName = request.FromUserName,
+                        Content = ex.Message,
+                        MsgType = request.MsgType
+                    };
                 }
             }
-            WeChatTextMessageEntity response = new WeChatTextMessageEntity
-            {
-                ToUserName = request.FromUserName,
-                Content = respMsg,
-                MsgType = request.MsgType
-            };
             context.Response.Write(response);
         }
     }

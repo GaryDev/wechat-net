@@ -43,6 +43,11 @@ namespace WeChat.Framwork.Core
         /// <summary>
         /// 事件消息
         /// </summary>
-        Event
+        Event,
+
+        /// <summary>
+        /// 图文消息
+        /// </summary>
+        News
     }
 }

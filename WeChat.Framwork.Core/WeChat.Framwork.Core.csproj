@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\WeChatImageMessageEntity.cs" />
+    <Compile Include="Entities\WeChatLinkMessageEntity.cs" />
     <Compile Include="Entities\WeChatMessageBaseEntity.cs" />
+    <Compile Include="Entities\WeChatNewsMessageEntity.cs" />
     <Compile Include="Entities\WeChatTextMessageEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeChatApplication.cs" />

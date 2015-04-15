@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Text\Concrete\WeChatTextWeather.cs" />
+    <Compile Include="WebApiClient.cs" />
     <Compile Include="WeChatSubscribeController.cs" />
     <Compile Include="Text\WeChatTextAnalyzer.cs" />
     <Compile Include="Text\WeChatTextController.cs" />

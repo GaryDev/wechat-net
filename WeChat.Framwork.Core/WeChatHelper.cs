@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Data;
 using System.Web.Script.Serialization;
 using System.Collections;
+using WeChat.Framwork.Core.Entities;
 
 namespace WeChat.Framwork.Core
 {
@@ -31,7 +32,7 @@ namespace WeChat.Framwork.Core
 
         static WeChatHelper()
         {
-            Token = ConfigurationManager.ConnectionStrings["WeChatToken"].ConnectionString;
+            Token = ConfigurationManager.AppSettings["WeChatToken"];
         }
 
         #endregion
@@ -185,20 +186,35 @@ namespace WeChat.Framwork.Core
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns>XElement对象</returns>
-        public static XElement GetXElement(this object entity)
+        public static XElement GetXElement(this object entity, string root = "xml")
         {
             try
             {
-                XElement element = new XElement("xml");
+                XElement element = new XElement(root);
                 Type type = entity.GetType();
                 PropertyInfo[] propertyInfos = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
                 foreach (PropertyInfo propertyInfo in propertyInfos)
                 {
                     object value = propertyInfo.GetValue(entity, null);
                     if (value == null) continue;
-
-                    XElement temp = new XElement(propertyInfo.Name, value);
-                    element.Add(temp);
+                    if (value is List<Article>)
+                    {
+                        XElement temp = new XElement(propertyInfo.Name);
+                        List<Article> articles = value as List<Article>;
+                        if (articles != null && articles.Count > 0)
+                        {
+                            foreach (Article article in articles)
+                            {
+                                temp.Add(article.GetXElement("item"));
+                            }
+                        }
+                        element.Add(temp);
+                    }
+                    else
+                    {
+                        XElement temp = new XElement(propertyInfo.Name, value);
+                        element.Add(temp);
+                    }
                 }
                 //using (MemoryStream memoryStream=new MemoryStream())
                 //{

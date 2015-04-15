@@ -31,7 +31,10 @@ namespace WeChat.Framwork.Plugin.Demo
             {
                 case "FY":
                     analyzer = new WeChatTextTranslation(data);
-                    break;                
+                    break;
+                case "TQ":
+                    analyzer = new WeChatTextWeather(data);
+                    break;
                 default:
                     throw new WeChatTextInvalidArgumentException("敬请期待...");
             }

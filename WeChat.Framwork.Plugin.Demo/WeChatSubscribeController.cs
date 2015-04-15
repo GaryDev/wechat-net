@@ -9,6 +9,16 @@ namespace WeChat.Framwork.Plugin.Demo
 {
     public class WeChatSubscribeController : WeChatControllerAdapter
     {
+        private const string WELCOME_MESSAGE = 
+            "感谢您关注【微信测试平台】\n" + 
+            "微信号：devhunter\n" +
+            "我们为您提供相关信息查询，做最好的微信测试平台。\n" + 
+            "目前平台功能如下：\n" + 
+            "【1】 查天气，如输入：TQ上海\n" +
+            "【2】 单词翻译，如输入：FYgood\n" + 
+            //"【3】 查公交，如输入：苏州公交178\n" +             
+            //"【4】 苏州信息查询，如输入：苏州观前街\n" + 
+            "更多内容，敬请期待...";
 
         public override WeChatMsgType WeChatMsgType
         {
@@ -26,7 +36,7 @@ namespace WeChat.Framwork.Plugin.Demo
                 new XElement("FromUserName", context.Request.ToUserName),
                 new XElement("CreateTime", DateTime.Now.GetInt()),
                 new XElement("MsgType", WeChatMsgType.Text.ToString().ToLower()),
-                new XElement("Content", "欢迎关注微信测试订阅号.回复试试,惊喜不断!微信机器人"));
+                new XElement("Content", WELCOME_MESSAGE));
             context.Response.Write(result);
         }
     }

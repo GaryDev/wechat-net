@@ -38,7 +38,7 @@ namespace WeChat.Framwork.Core
         static WeChatControllerFactory()
         {
             // 插件目录
-            PluginFolder = AppDomain.CurrentDomain.BaseDirectory + "bin\\" + ConfigurationManager.ConnectionStrings["WeChatPluginFolder"].ConnectionString;
+            PluginFolder = AppDomain.CurrentDomain.BaseDirectory + "bin\\" + ConfigurationManager.AppSettings["WeChatPluginFolder"];
 
             PluginTypes = new List<Type>();
 

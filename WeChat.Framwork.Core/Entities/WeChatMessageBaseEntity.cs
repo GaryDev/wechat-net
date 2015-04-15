@@ -28,7 +28,7 @@ namespace WeChat.Framwork.Core.Entities
             {
                 if (string.IsNullOrEmpty(this._fromUserName))
                 {
-                    this._fromUserName = ConfigurationManager.ConnectionStrings["WeChatAccountName"].ConnectionString;
+                    this._fromUserName = ConfigurationManager.AppSettings["WeChatAccountName"];
                 }
                 return this._fromUserName;
             }

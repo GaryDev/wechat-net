@@ -7,6 +7,7 @@ using System.IO;
 using System.Web;
 using WeChat.Framwork.Core;
 using System.Collections;
+using WeChat.Framwork.Core.Entities;
 
 namespace WeChat.Framwork.Plugin.Demo
 {
@@ -19,8 +20,18 @@ namespace WeChat.Framwork.Plugin.Demo
         {
             this._word = word;
         }
+
+        public WeChatMessageBaseEntity GetResponse(WeChatTextMessageEntity request)
+        {
+            return new WeChatTextMessageEntity
+            {
+                ToUserName = request.FromUserName,
+                Content = GetResponseMessage(),
+                MsgType = request.MsgType
+            };
+        }
         
-        public string GetResponseMessage()
+        private string GetResponseMessage()
         {
             string resp = string.Empty;
             Dictionary<string, dynamic> result = DoTranslation();
@@ -50,29 +61,23 @@ namespace WeChat.Framwork.Plugin.Demo
 
         private Dictionary<string, dynamic> DoTranslation()
         {
+            /* 例子：
+            * {
+            * "translation":["测试"],
+            * "basic":{"us-phonetic":"tɛst",
+            *          "phonetic":"test",
+            *          "uk-phonetic":"test",
+            *          "explains":["n. 试验；检验","vt. 试验；测试","vi. 试验；测试","n. (Test)人名；(英)特斯特"]
+            *          },
+            * "query":"test",
+            * "errorCode":0,
+            * "web":[{"value":["测试","检验","测验"],"key":"test"},
+            *        {"value":["测试员","测试工程师","软件测试工程师"],"key":"Test Engineer"},
+            *        {"value":["硬度试验","硬度测试","硬度实验"],"key":"hardness test"}]
+            *}*/
             string url = string.Format(URL, HttpUtility.UrlEncode(_word, Encoding.UTF8));
-            HttpWebRequest webRequest = HttpWebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse webResponse = webRequest.GetResponse() as HttpWebResponse;
-            using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
-            {
-                /* 例子：
-                 * {
-                 * "translation":["测试"],
-                 * "basic":{"us-phonetic":"tɛst",
-                 *          "phonetic":"test",
-                 *          "uk-phonetic":"test",
-                 *          "explains":["n. 试验；检验","vt. 试验；测试","vi. 试验；测试","n. (Test)人名；(英)特斯特"]
-                 *          },
-                 * "query":"test",
-                 * "errorCode":0,
-                 * "web":[{"value":["测试","检验","测验"],"key":"test"},
-                 *        {"value":["测试员","测试工程师","软件测试工程师"],"key":"Test Engineer"},
-                 *        {"value":["硬度试验","硬度测试","硬度实验"],"key":"hardness test"}]
-                 *}*/
-                string respResult = reader.ReadToEnd();
-                Dictionary<string, dynamic> dict = WeChatHelper.DeserializeToDictionary(respResult);
-                return dict;
-            }
+            WebApiClient client = new WebApiClient(url);
+            return client.GetResponse();
         }
     }
 
