@@ -26,7 +26,7 @@ namespace WeChat.Framwork.Plugin.Demo
                 new XElement("FromUserName", context.Request.ToUserName),
                 new XElement("CreateTime", DateTime.Now.GetInt()),
                 new XElement("MsgType", WeChatMsgType.Text.ToString().ToLower()),
-                new XElement("Content", "欢迎关注***的微信订阅号.回复试试,惊喜不断!微信机器人"));
+                new XElement("Content", "欢迎关注微信测试订阅号.回复试试,惊喜不断!微信机器人"));
             context.Response.Write(result);
         }
     }

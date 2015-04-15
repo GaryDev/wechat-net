@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using WeChat.Framwork.Core;
 using WeChat.Framwork.Core.Entities;
+using System.Data;
+using System.Collections;
 
 namespace WeChat.Framwork.Plugin.Demo
 {
@@ -18,10 +20,25 @@ namespace WeChat.Framwork.Plugin.Demo
         public override void ProcessWeChat(WeChatContext context)
         {
             WeChatTextMessageEntity request = context.Request.GetRequestModel<WeChatTextMessageEntity>();
+            string respMsg = string.Empty;
+            if (string.IsNullOrEmpty(request.Content))
+                respMsg = "说点什么吧...";
+            else
+            {
+                try
+                {
+                    WeChatTextAnalyzer analyzer = WeChatTextFactory.GetInstance().CreateAnalyzer(request.Content.Trim());
+                    respMsg = analyzer.GetResponseMessage();
+                }
+                catch (WeChatTextInvalidArgumentException ex)
+                {
+                    respMsg = ex.Message;
+                }
+            }
             WeChatTextMessageEntity response = new WeChatTextMessageEntity
             {
                 ToUserName = request.FromUserName,
-                Content = string.Format("你请求的是text类型消息!执行的控制器是:{0},实现:{1}", this.GetType().FullName, this.GetType().GetInterface("WeChatController").FullName),
+                Content = respMsg,
                 MsgType = request.MsgType
             };
             context.Response.Write(response);

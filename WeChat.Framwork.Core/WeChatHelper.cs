@@ -7,6 +7,9 @@ using System.Configuration;
 using System.Web.Security;
 using System.Xml.Linq;
 using System.Reflection;
+using System.Data;
+using System.Web.Script.Serialization;
+using System.Collections;
 
 namespace WeChat.Framwork.Core
 {
@@ -87,6 +90,18 @@ namespace WeChat.Framwork.Core
         private static string Sha1Encrypt(string targetString, string encryptType)
         {
             return FormsAuthentication.HashPasswordForStoringInConfigFile(targetString, encryptType);
+        }
+
+        #endregion
+
+        #region Json 字符串 转换为 Dictionary<string, dynamic>数据集合
+
+        public static Dictionary<string, dynamic> DeserializeToDictionary(string json)
+        {
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            javaScriptSerializer.MaxJsonLength = Int32.MaxValue; //取得最大数值
+            Dictionary<string, dynamic> values = javaScriptSerializer.Deserialize<Dictionary<string, dynamic>>(json);
+            return values;
         }
 
         #endregion
@@ -204,6 +219,6 @@ namespace WeChat.Framwork.Core
             {
                 throw ex;
             }
-        }
+        }        
     }
 }

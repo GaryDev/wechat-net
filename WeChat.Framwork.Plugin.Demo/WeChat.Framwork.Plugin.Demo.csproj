@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,7 +44,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeChatSubscribeController.cs" />
-    <Compile Include="WeChatTextController.cs" />
+    <Compile Include="Text\WeChatTextAnalyzer.cs" />
+    <Compile Include="Text\WeChatTextController.cs" />
+    <Compile Include="Text\WeChatTextFactory.cs" />
+    <Compile Include="Text\WeChatTextInvalidArgumentException.cs" />
+    <Compile Include="Text\Concrete\WeChatTextTranslation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WeChat.Framwork.Core\WeChat.Framwork.Core.csproj">
