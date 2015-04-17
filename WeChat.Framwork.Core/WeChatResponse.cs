@@ -56,7 +56,7 @@ namespace WeChat.Framwork.Core
         {
             try
             {
-                ResponseXml = element.ToString();
+                ResponseXml = System.Web.HttpUtility.HtmlDecode(element.ToString());
             }
             catch (Exception ex)
             {

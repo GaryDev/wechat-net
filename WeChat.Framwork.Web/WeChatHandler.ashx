@@ -51,17 +51,10 @@ public class WeChatHandler : IHttpHandler {
                     break;
             }
         }
-        catch (XmlException ex)
+        catch (XmlException)
         {
-            responseXml = string.Format("xml解析异常:{0}", ex.Message);
-        }
-        catch (WeChatControllerNotFoundException ex)
-        {
-            responseXml = ex.Message;
-        }
-        catch (Exception ex)
-        {
-            responseXml = ex.Message;
+            //responseXml = string.Format("xml解析异常:{0}", ex.Message);
+            responseXml = string.Empty;
         }
 
         context.Response.Clear();

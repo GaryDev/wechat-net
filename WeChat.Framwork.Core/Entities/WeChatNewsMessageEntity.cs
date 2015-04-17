@@ -19,5 +19,10 @@ namespace WeChat.Framwork.Core.Entities
         public string Description { get; set; }
         public string PicUrl { get; set; }
         public string Url { get; set; }
+
+        public override string ToString()
+        {
+            return this.GetXElement("item").ToString();
+        }
     }
 }

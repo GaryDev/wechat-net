@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using WeChat.Framwork.Core.Entities;
 
 namespace WeChat.Framwork.Core
 {
@@ -45,13 +46,19 @@ namespace WeChat.Framwork.Core
                 WeChatController wechatController = WeChatControllerFactory.GetInstance().CreateWeChatController(this._context.Request);
                 wechatController.ProcessWeChat(this._context);
             }
-            catch (WeChatControllerNotFoundException ex)
+            catch (WeChatControllerNotFoundException e)
             {
-                throw ex;
+                this._context.Response.Write(e.Message);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw ex;
+                WeChatTextMessageEntity ex = new WeChatTextMessageEntity
+                {
+                    ToUserName = this._context.Request.FromUserName,
+                    Content = e.Message,
+                    MsgType = WeChatMsgType.Text.ToString()
+                };
+                this._context.Response.Write(ex);
             }
             return this._context.Response.ResponseXml;
         }

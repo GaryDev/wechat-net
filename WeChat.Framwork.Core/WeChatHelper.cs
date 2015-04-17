@@ -197,24 +197,9 @@ namespace WeChat.Framwork.Core
                 {
                     object value = propertyInfo.GetValue(entity, null);
                     if (value == null) continue;
-                    if (value is List<Article>)
-                    {
-                        XElement temp = new XElement(propertyInfo.Name);
-                        List<Article> articles = value as List<Article>;
-                        if (articles != null && articles.Count > 0)
-                        {
-                            foreach (Article article in articles)
-                            {
-                                temp.Add(article.GetXElement("item"));
-                            }
-                        }
-                        element.Add(temp);
-                    }
-                    else
-                    {
-                        XElement temp = new XElement(propertyInfo.Name, value);
-                        element.Add(temp);
-                    }
+                    
+                    XElement temp = new XElement(propertyInfo.Name, value);
+                    element.Add(temp);
                 }
                 //using (MemoryStream memoryStream=new MemoryStream())
                 //{
