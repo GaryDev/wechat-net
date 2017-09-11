@@ -9,9 +9,9 @@ namespace WeChat.Framwork.Plugin.Demo
 {
     public class WeChatSubscribeController : WeChatControllerAdapter
     {
-        private const string WELCOME_MESSAGE = 
+        private static string WELCOME_MESSAGE = 
             "感谢您关注【微信测试平台】\n" + 
-            "微信号：devhunter\n" +
+            "微信号：" + WeChatHelper.Account + "\n" +
             "我们为您提供相关信息查询，做最好的微信测试平台。\n" + 
             "目前平台功能如下：\n" + 
             "【1】 查天气，如输入：TQ上海\n" +

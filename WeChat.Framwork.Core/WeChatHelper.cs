@@ -26,6 +26,8 @@ namespace WeChat.Framwork.Core
         /// </summary>
         private static readonly string Token;
 
+        public static readonly string Account;
+
         #endregion
 
         #region 构造函数
@@ -33,6 +35,7 @@ namespace WeChat.Framwork.Core
         static WeChatHelper()
         {
             Token = ConfigurationManager.AppSettings["WeChatToken"];
+            Account = ConfigurationManager.AppSettings["WeChatAccountName"];
         }
 
         #endregion
